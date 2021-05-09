@@ -11,6 +11,18 @@ Login ด้วย User ที่ไม่ถูกต้อง  จะต้อ
     Input Password    ${VALID PASSWORD}
     Submit Credentials
     Error Message Should Be Show
+
+Login ด้วย Password ที่ไม่ถูกต้อง  จะต้องแสดงข้อความ Error
+    Input Username    ${VALID USER}
+    Input Password    invalid
+    Submit Credentials
+    Error Message Should Be Show
+
+Login ด้วย User และ Password ที่ไม่ถูกต้อง  จะต้องแสดงข้อความ Error
+    Input Username    invalid
+    Input Password    invalid
+    Submit Credentials
+    Error Message Should Be Show
 ```
 
 ## Reference
