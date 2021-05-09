@@ -101,5 +101,6 @@ Login ผิดพลาด จะต้องแสดงข้อความ 
 
 ## Reference
 
+- [Robot Framework User Guide - 2.2.7   Test templates](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#test-templates)
 - [How to write good test cases using Robot Framework](https://github.com/robotframework/HowToWriteGoodTestCases/blob/master/HowToWriteGoodTestCases.rst)
-- [Robot Framework User Guide - .2.7   Test templates](https://robotframework.org/robotframework/latest/RobotFrameworkUserGuide.html#test-templates)
+- [Web testing with Robot Framework and SeleniumLibrary](https://github.com/robotframework/WebDemo/)
