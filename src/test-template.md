@@ -82,6 +82,19 @@ Login ผิดพลาด จะต้องแสดงข้อความ 
 
 Data-Driven Testing หรือหลาย ๆ คนอาจจะรู้จักกันในชื่อ Table-Driven Testing หรือ Parameterized Testing คือ วิธีการในการทดสอบ Software โดยพยายาม อธิบายเงื่อนไขของการทดสอบนั้นให้อยู่ในรูปแบบของ ตารางของข้อมูลที่ใช้ในการทดสอบ ซึ่งข้อมูลในตารางจะประกอบไปด้วย ข้อมูลที่ป้อนเข้าระบบ รวมถึงผลลัพท์ที่จะได้จากการใช้งาน
 
+ซึ่งถ้ากลับมาที่ Test Cases ของการ Login ก็จะสามารถเขียนอธฺบาย การทดสอบทั้งหมดในกรณี Login ผิดพลาด ในรูปแบบของตารางของข้อมูลได้คร่าว ๆ ดังนี้
+
+| Test Case Name | User | Password | Error Message |
+| -------------- | :--: | :------: | ------------- |
+| Login ด้วย User ที่ไม่ถูกต้อง | invalid | ${VALID PASSWORD} | User/Password ไม่ถูกต้อง |
+| Login ด้วย Password ที่ไม่ถูกต้อง | ${VALID USER} | invalid | User/Password ไม่ถูกต้อง |
+| Login ด้วย User และ Password ที่ไม่ถูกต้อง | invalid | invalid | User/Password ไม่ถูกต้อง |
+| Login โดยไม่กรอก User | ${EMPTY} | ${VALID PASSWORD} | กรุณากรอก User |
+| Login โดยไม่กรอก Password | ${VALID USER} | ${EMPTY} | กรุณากรอก Password |
+| Login โดยไม่กรอกทั้ง User และ Password | ${EMPTY} | ${EMPTY} | กรุณากรอก User และ Password |
+
+จะเห็นว่า ถ้าเราสามารถอธิบาย Test Cases ของเราได้ในรูปแบบของตารางแบบนี้ จะทำให้ Test Cases ของเราอ่านเข้าใจได้ง่ายขึ้นทันที แถมถ้าจะต้องแก้ไขเงื่อนไขในการทดสอบของแต่ละ Test Case ก็สามารถแก้ไขที่ข้อมูลในบรรทัดนั้นได้ทันที
+
 ---
 
 ## ลองใช้ Test Template
