@@ -6,21 +6,91 @@
 
 ```robotframework
 *** Test Cases ***
-Login ด้วย User ที่ไม่ถูกต้อง  จะต้องแสดงข้อความ Error
+Login ด้วย User ที่ไม่ถูกต้อง จะต้องแสดงข้อความ Error
     Input Username    invalid
     Input Password    ${VALID PASSWORD}
     Submit Credentials
     Error Message Should Be Show
 
-Login ด้วย Password ที่ไม่ถูกต้อง  จะต้องแสดงข้อความ Error
+Login ด้วย Password ที่ไม่ถูกต้อง จะต้องแสดงข้อความ Error
     Input Username    ${VALID USER}
     Input Password    invalid
     Submit Credentials
     Error Message Should Be Show
 
-Login ด้วย User และ Password ที่ไม่ถูกต้อง  จะต้องแสดงข้อความ Error
+Login ด้วย User และ Password ที่ไม่ถูกต้อง จะต้องแสดงข้อความ Error
     Input Username    invalid
     Input Password    invalid
+    Submit Credentials
+    Error Message Should Be Show
+
+Login โดยไม่กรอก User จะต้องแสดงข้อความ Error
+    Input Username    ${EMPTY}
+    Input Password    ${VALID PASSWORD}
+    Submit Credentials
+    Error Message Should Be Show
+
+Login โดยไม่กรอก Password จะต้องแสดงข้อความ Error
+    Input Username    ${VALID USER}
+    Input Password    ${EMPTY}
+    Submit Credentials
+    Error Message Should Be Show
+
+Login โดยไม่กรอกทั้ง User และ Password จะต้องแสดงข้อความ Error
+    Input Username    ${EMPTY}
+    Input Password    ${EMPTY}
+    Submit Credentials
+    Error Message Should Be Show
+```
+
+```robotframework
+*** Test Cases ***
+Login ด้วย User ที่ไม่ถูกต้อง จะต้องแสดงข้อความ Error
+    Login ผิดพลาด จะต้องแสดงข้อความ Error    invalid    ${VALID PASSWORD}
+
+Login ด้วย Password ที่ไม่ถูกต้อง จะต้องแสดงข้อความ Error
+    Login ผิดพลาด จะต้องแสดงข้อความ Error    ${VALID USER}    invalid
+
+Login ด้วย User และ Password ที่ไม่ถูกต้อง จะต้องแสดงข้อความ Error
+    Login ผิดพลาด จะต้องแสดงข้อความ Error    invalid    invalid
+
+Login โดยไม่กรอก User จะต้องแสดงข้อความ Error
+    Login ผิดพลาด จะต้องแสดงข้อความ Error    ${EMPTY}    ${VALID PASSWORD}
+
+Login โดยไม่กรอก Password จะต้องแสดงข้อความ Error
+    Login ผิดพลาด จะต้องแสดงข้อความ Error    ${VALID USER}    ${EMPTY}
+
+Login โดยไม่กรอกทั้ง User และ Password จะต้องแสดงข้อความ Error
+    Login ผิดพลาด จะต้องแสดงข้อความ Error    ${EMPTY}    ${EMPTY}
+
+*** Keywords ***
+Login ผิดพลาด จะต้องแสดงข้อความ Error
+    [Agruments]    ${USER}   ${PASSWORD}
+    Input Username    ${USER}
+    Input Password    ${PASSWORD}
+    Submit Credentials
+    Error Message Should Be Show
+```
+
+## ลองใช้ Test Template
+
+```robotframework
+*** Setting ***
+Test Template    Login ผิดพลาด จะต้องแสดงข้อความ Error
+
+*** Test Cases ***                      USER             PASSWORD
+Login ด้วย User ที่ไม่ถูกต้อง                 invalid          ${VALID PASSWORD}
+Login ด้วย Password ที่ไม่ถูกต้อง             ${VALID USER}    invalid
+Login ด้วย User และ Password ที่ไม่ถูกต้อง    invalid          invalid
+Login โดยไม่กรอก User                    ${EMPTY}         ${VALID PASSWORD}
+Login โดยไม่กรอก Password                ${VALID USER}    ${EMPTY}
+Login โดยไม่กรอกทั้ง User และ Password     ${EMPTY}         ${EMPTY}
+    
+*** Keywords ***
+Login ผิดพลาด จะต้องแสดงข้อความ Error
+    [Agruments]    ${USER}   ${PASSWORD}
+    Input Username    ${USER}
+    Input Password    ${PASSWORD}
     Submit Credentials
     Error Message Should Be Show
 ```
